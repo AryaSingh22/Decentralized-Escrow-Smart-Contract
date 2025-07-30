@@ -1,17 +1,8 @@
-// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-/**
- * @title Optimized Decentralized Escrow Smart Contract with Dispute Resolution
- * @notice This contract enables gas-efficient, secure peer-to-peer transactions
- * with a robust dispute resolution mechanism, custom timeouts, and dispute staking.
- * It is fully self-contained and does not rely on any external libraries.
- */
 contract EscrowWithDispute {
-    // ============ Type Declarations ============
-
     enum State {
-        EMPTY, // Default state, transaction does not exist
+        EMPTY,
         AWAITING_DELIVERY,
         DELIVERED,
         DISPUTED,
@@ -20,25 +11,19 @@ contract EscrowWithDispute {
     }
 
     struct Transaction {
-        // --- Slot 0: Parties ---
         address payable buyer;
         address payable seller;
-        // --- Slot 1 & 2: Hashes ---
         bytes32 disputeReasonHash;
         bytes32 evidenceHash;
-        // --- Slot 3: Amounts (Packed) ---
-        uint96 amount;          // 12 bytes
-        uint96 disputeStake;    // 12 bytes
-        uint64 createdAt;       // 8 bytes
-        // --- Slot 4: Timestamps & State (Packed) ---
-        uint64 deliveredAt;     // 8 bytes
-        uint64 disputeResolvedAt; // 8 bytes
-        uint64 deliveryTimeout; // 8 bytes
-        uint64 disputeWindow;   // 8 bytes
-        State state;            // 1 byte
+        uint96 amount;
+        uint96 disputeStake;
+        uint64 createdAt;
+        uint64 deliveredAt;
+        uint64 disputeResolvedAt;
+        uint64 deliveryTimeout;
+        uint64 disputeWindow;
+        State state;
     }
-
-    // ============ State Variables ============
 
     mapping(uint256 => Transaction) public transactions;
     uint256 public nextTransactionId;
@@ -46,20 +31,14 @@ contract EscrowWithDispute {
     address public arbitrator;
     address public owner;
 
-    // Default timeouts (in seconds), can be overridden per transaction
     uint64 public constant DEFAULT_DELIVERY_TIMEOUT = 7 days;
     uint64 public constant DEFAULT_DISPUTE_WINDOW = 3 days;
     
-    // Fallback timeout for arbitrator inaction
     uint256 public constant ARBITRATOR_TIMEOUT = 14 days;
 
-    // Stake required from the buyer to raise a dispute
     uint256 public disputeStakeAmount;
 
-    // Optional platform fee in basis points (1% = 100)
     uint256 public platformFeeBps;
-
-    // ============ Events ============
 
     event TransactionCreated(uint256 indexed transactionId, address indexed buyer, address indexed seller, uint256 amount);
     event TransactionCancelled(uint256 indexed transactionId);
@@ -72,11 +51,8 @@ contract EscrowWithDispute {
     event PlatformFeeUpdated(uint256 newFeeBps);
     event DisputeStakeAmountUpdated(uint256 newStakeAmount);
 
-    // Critical fallback events
     event ArbitratorInactionResolved(uint256 indexed transactionId, address indexed fundsRecipient);
     event DisputeStakeSlashed(uint256 indexed transactionId, address indexed beneficiary, uint256 amount);
-
-    // ============ Modifiers ============
 
     modifier onlyOwner() {
         require(msg.sender == owner, "Only owner can call this function");
@@ -119,8 +95,6 @@ contract EscrowWithDispute {
         locked = false;
     }
 
-    // ============ Constructor ============
-
     constructor(address _arbitrator, uint256 _platformFeeBps, uint256 _initialDisputeStake) {
         owner = msg.sender;
         arbitrator = _arbitrator;
@@ -128,8 +102,6 @@ contract EscrowWithDispute {
         platformFeeBps = _platformFeeBps;
         disputeStakeAmount = _initialDisputeStake;
     }
-
-    // ============ External Functions: Transaction Lifecycle ============
 
     function createTransaction(
         address payable _seller,
@@ -237,8 +209,6 @@ contract EscrowWithDispute {
         delete transactions[_transactionId];
     }
 
-    // ============ External Functions: Dispute Handling ============
-
     function raiseDispute(uint256 _transactionId, string calldata _reason)
         external
         payable
@@ -317,8 +287,6 @@ contract EscrowWithDispute {
         delete transactions[_transactionId];
     }
 
-    // ============ Admin Functions ============
-
     function updateArbitrator(address _newArbitrator) external onlyOwner {
         require(_newArbitrator != address(0), "Invalid arbitrator address");
         emit ArbitratorUpdated(arbitrator, _newArbitrator);
@@ -335,8 +303,6 @@ contract EscrowWithDispute {
         disputeStakeAmount = _newStakeAmount;
         emit DisputeStakeAmountUpdated(_newStakeAmount);
     }
-
-    // ============ View Functions ============
 
     function getState(uint256 _transactionId) public view returns (string memory) {
         State state = transactions[_transactionId].state;
