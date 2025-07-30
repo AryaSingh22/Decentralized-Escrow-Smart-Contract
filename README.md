@@ -32,28 +32,28 @@ _initialDisputeStake: Minimum stake to raise a dispute.
 
 ##🧠 Functionality Overview
 1. 📦 Escrow Lifecycle
-createTransaction(address seller, uint64 timeout, uint64 disputeWindow) payable
+-createTransaction(address seller, uint64 timeout, uint64 disputeWindow) payable
 
-Buyer creates an escrow transaction by sending funds.
+-Buyer creates an escrow transaction by sending funds.
 
-Must specify timeout and disputeWindow.
+-Must specify timeout and disputeWindow.
 
-releaseFunds(uint256 txId)
+-releaseFunds(uint256 txId)
 
-Buyer releases the funds to seller.
+-Buyer releases the funds to seller.
 
 2. ⚔️ Dispute Handling
-raiseDispute(uint256 txId) payable
+-raiseDispute(uint256 txId) payable
 
-Buyer or seller raises a dispute by depositing the stake.
+-Buyer or seller raises a dispute by depositing the stake.
 
-resolveDispute(uint256 txId, bool releaseToSeller)
+-resolveDispute(uint256 txId, bool releaseToSeller)
 
-Arbitrator resolves dispute, releasing funds accordingly.
+-Arbitrator resolves dispute, releasing funds accordingly.
 
-timeoutResolve(uint256 txId)
+-timeoutResolve(uint256 txId)
 
-Automatically resolves the dispute if arbitrator is inactive post dispute window.
+-Automatically resolves the dispute if arbitrator is inactive post dispute window.
 
 ##💰 Platform Revenue
 claimPlatformFees(address to)
