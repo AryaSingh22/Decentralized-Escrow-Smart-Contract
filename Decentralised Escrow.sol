@@ -40,7 +40,7 @@ contract EscrowWithDispute {
 
     uint256 public platformFeeBps;
 
-    event TransactionCreated(uint256 indexed transactionId, address indexed buyer, address indexed seller, uint256 amount);
+    event TransactionCreated(uint256 indexed transactionId, address indexed buyer, address indexed seller, uint256 amount);       
     event TransactionCancelled(uint256 indexed transactionId);
     event DeliveryMarked(uint256 indexed transactionId, uint256 timestamp);
     event DisputeRaised(uint256 indexed transactionId, bytes32 reasonHash, string reason);
