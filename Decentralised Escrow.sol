@@ -66,7 +66,7 @@ contract EscrowWithDispute {
 
     modifier onlyParty(uint256 _transactionId) {
         require(
-            msg.sender == transactions[_transactionId].buyer || msg.sender == transactions[_transactionId].seller,
+            msg.sender == transactions[_transactionId].buyer || msg.sender == transactions[_transactionId].seller,     
             "Only buyer or seller can call this function"
         );
         _;
