@@ -36,7 +36,7 @@ contract EscrowWithDispute {
     
     uint256 public constant ARBITRATOR_TIMEOUT = 14 days;
 
-    uint256 public disputeStakeAmount;
+    uint256 public disputeStakeAmount;     
 
     uint256 public platformFeeBps;
 
