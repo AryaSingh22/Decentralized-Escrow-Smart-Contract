@@ -4,7 +4,7 @@ contract EscrowWithDispute {
     enum State {
         EMPTY,
         AWAITING_DELIVERY,
-        DELIVERED,     
+        DELIVERED,               
         DISPUTED,
         CANCELLED,
         RESOLVED
