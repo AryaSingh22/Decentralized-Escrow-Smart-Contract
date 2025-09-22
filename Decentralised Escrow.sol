@@ -7,7 +7,7 @@ contract EscrowWithDispute {
         DELIVERED,               
         DISPUTED,            
         CANCELLED, 
-        RESOLVED        
+        RESOLVED            
     }         
 
     struct Transaction {  
