@@ -5,7 +5,7 @@ contract EscrowWithDispute {
         EMPTY,     
         AWAITING_DELIVERY, 
         DELIVERED,            
-        DISPUTED,            
+        DISPUTED,           
         CANCELLED,      
         RESOLVED            
     }         
