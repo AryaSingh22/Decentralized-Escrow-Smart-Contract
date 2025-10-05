@@ -32,7 +32,7 @@ contract EscrowWithDispute {
     address public owner;
 
     uint64 public constant DEFAULT_DELIVERY_TIMEOUT = 7 days;
-    uint64 public constant DEFAULT_DISPUTE_WINDOW = 3 days;
+    uint64 public constant DEFAULT_DISPUTE_WINDOW = 3 days; 
     
     uint256 public constant ARBITRATOR_TIMEOUT = 14 days;
 
