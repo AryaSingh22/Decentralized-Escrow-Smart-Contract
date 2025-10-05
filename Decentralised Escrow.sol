@@ -21,7 +21,7 @@ contract EscrowWithDispute {
         uint64 deliveredAt;
         uint64 disputeResolvedAt;
         uint64 deliveryTimeout;     
-        uint64 disputeWindow;       
+        uint64 disputeWindow;
         State state;
     }
 
