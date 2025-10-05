@@ -3,8 +3,8 @@ pragma solidity ^0.8.19;
 contract EscrowWithDispute {      
     enum State {
         EMPTY,     
-        AWAITING_DELIVERY, 
-        DELIVERED,            
+        AWAITING_DELIVERY,
+        DELIVERED,      
         DISPUTED,           
         CANCELLED,      
         RESOLVED            
