@@ -9,7 +9,7 @@ contract EscrowWithDispute {
         CANCELLED,      
         RESOLVED            
     }          
- 
+  
     struct Transaction {   
         address payable buyer;
         address payable seller; 
