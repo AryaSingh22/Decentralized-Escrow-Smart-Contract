@@ -26,7 +26,7 @@ contract EscrowWithDispute {
     }
 
     mapping(uint256 => Transaction) public transactions;
-    uint256 public nextTransactionId;
+    uint256 public nextTransactionId; 
 
     address public arbitrator;
     address public owner;
