@@ -11,7 +11,7 @@ contract EscrowWithDispute {
     }          
   
     struct Transaction {   
-        address payable buyer; 
+        address payable buyer;  
         address payable seller; 
         bytes32 disputeReasonHash;        
         bytes32 evidenceHash;   
