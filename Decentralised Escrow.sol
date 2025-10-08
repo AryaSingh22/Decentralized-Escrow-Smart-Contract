@@ -15,7 +15,7 @@ contract EscrowWithDispute {
         address payable seller; 
         bytes32 disputeReasonHash;       
         bytes32 evidenceHash;   
-        uint96 amount;
+        uint96 amount; 
         uint96 disputeStake;
         uint64 createdAt;
         uint64 deliveredAt;
