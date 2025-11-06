@@ -8,7 +8,7 @@ A gas-optimized, self-contained decentralized **Escrow Smart Contract** with bui
 
 - ✅ **Trustless Buyer-Seller Escrow** system.
 - ⚖️ **Dispute Mechanism**: Parties can raise disputes with a stake.
-- 🧑‍⚖️ **Arbitrator Resolution**: Third-party arbitrator resolves conflicts.
+- 🧑‍⚖️ **Arbitrator Resolution**: Third-party arbitrator resolves conflicts. 
 - ⏳ **Timeout-Based Fallback**: Disputes are resolved if arbitrator fails to act.
 - 💸 **Platform Fees** in basis points (BPS) to earn revenue.
 - 🔐 **No OpenZeppelin** — everything implemented manually for gas optimization.
